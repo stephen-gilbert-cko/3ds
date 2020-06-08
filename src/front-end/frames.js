@@ -227,7 +227,7 @@ Frames.addEventHandler(Frames.Events.PAYMENT_METHOD_CHANGED, (event) => {
 
 // When Frames has tokenized the card
 Frames.addEventHandler(Frames.Events.CARD_TOKENIZED, (event) => {
-  payWithToken(event.token);
+  payWith3ds(event.token);
 });
 
 // When the pay button is clicked
@@ -248,11 +248,11 @@ payButton.addEventListener("click", function (event) {
 });
 
 // We call our back-end server to process the payment with the token
-const payWithToken = (token) => {
+const payWith3ds = (token) => {
   http(
     {
       method: "POST",
-      route: "/payWithToken",
+      route: "/payWith3ds",
       body: { token: token },
     },
     (data) => {
