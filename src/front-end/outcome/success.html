@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirmation</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" href="./images/favicon.ico" type="image/ico" />
 </head>
-<body>
-  <div id="success-animation"></div>
-  <p id="message">Test payment approved!</p>
-  <img id="card-scheme" />
-  <p id="last-four"></p>
-  
+
+<body class="light">
+  <div id="outcome-animation"></div>
+
+  <div class="confirmation">
+    <h3 id="message">Test payment approved!</h3>
+    <img id="card-scheme" />
+    <p id="last-four"></p>
+  </div>
+
   <p id="error"></p>
   <script src="./outcome/script.js"></script>
 </body>
+
 </html>

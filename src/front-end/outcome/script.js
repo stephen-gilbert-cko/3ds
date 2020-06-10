@@ -1,6 +1,21 @@
 const schemeIcon = document.getElementById("card-scheme");
 const lastFour = document.getElementById("last-four");
 const errorMessage = document.getElementById("error");
+const outcome = document.getElementById("outcome-animation");
+const cross =
+  '<svg class="cross" viewBox="0 0 50 50"><path class="cross draw" fill="none" d="M16 16 34 34 M34 16 16 34"></path></svg>';
+
+var theme = "";
+
+// Default theme to user's system preference
+theme = getComputedStyle(document.documentElement).getPropertyValue("content");
+
+// Apply cached theme on page reload
+theme = localStorage.getItem("theme");
+
+if (theme) {
+  document.body.classList.add(theme);
+}
 
 // Get session ID from the URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -20,6 +35,8 @@ const showOutcome = () => {
       console.log("Payment details: ", data);
       // Confirmation details
       if (data.approved) {
+        outcome.classList.add("checkmark", "draw");
+
         schemeIcon.setAttribute(
           "src",
           "images/card-icons/" + data.source.scheme + ".svg"
@@ -29,6 +46,8 @@ const showOutcome = () => {
 
         lastFour.innerHTML = "****" + data.source.last4;
       }
+      outcome.class = "cross";
+      outcome.innerHTML = cross;
     }
   );
 };

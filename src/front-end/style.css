@@ -34,6 +34,7 @@
   --switch-moon-color: var(--white);
   --switch-sun-color: var(--yellow);
   --switch-border-color: var(--white);
+  --confirmation-text: var(--darker-gray)
 }
 
 .dark {
@@ -53,6 +54,7 @@
   --switch-moon-color: var(--white);
   --switch-sun-color: var(--yellow);
   --switch-border-color: var(--white);
+  --confirmation-text: var(--white)
 }
 
 * {
@@ -576,4 +578,8 @@ input[type="checkbox"]:checked + label:before {
 input[type="checkbox"]:checked + label:after {
   -webkit-transform: translateX(48px) scale(1);
   transform: translateX(48px) scale(1);
+}
+
+.confirmation {
+  color: var(--confirmation-text);
 }
