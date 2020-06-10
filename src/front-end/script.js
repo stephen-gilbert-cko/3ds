@@ -32,23 +32,10 @@ const handleResponse = (data) => {
   payLoader.classList.add("hide");
   PAYMENT_ID = data.id;
   // Payment approved
-  if (data.approved) {
-    payButton.style.backgroundColor = "var(--button-background)";
-    showCheckmark();
-    setTimeout(() => {
-      hideCheckmark();
-      payButton.innerHTML = "&#10227; New Payment";
-
-      // Colour Frames input borders to show successful payment
-      nameInput.classList.add("success");
-      cardInput.classList.add("success");
-      dateInput.classList.add("success");
-      cvvInput.classList.add("success");
-
-      payButton.style.pointerEvents = "auto";
-    }, 1200);
+  if (data.redirectionUrl) {
+    window.location.href = data.redirectionUrl;
   }
-  // Payment declined / timeout error
+  // Timeout/connection error
   else {
     payButton.style.backgroundColor = "var(--button-background-error)";
     showCross();
@@ -122,7 +109,7 @@ const http = ({ method, route, body }, callback) => {
   timeout(10000, fetch(`${window.location.origin}${route}`, requestData))
     .then((res) => res.json())
     .then((data) => callback(data))
-    .catch((er) => errorMessage.innerHTML = "Connection timed out");
+    .catch((er) => errorMessage.innerHTML = er);
 };
 
 // For connection timeout error handling

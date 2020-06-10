@@ -22,4 +22,10 @@ route.post("/payWith3ds", async (req, res) => {
   });
 });
 
+// Get payment details by cko-session-id
+// router.post("/getPaymentBySession", async (req, res) => {
+//     const details = await cko.payments.get(req.body.sessionId);
+//     res.send(details);
+// });
+
 module.exports = route;

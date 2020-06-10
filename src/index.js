@@ -26,6 +26,14 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./front-end/index.html"));
 });
 
+app.get("/success", (req, res) => {
+  res.sendFile(path.join(__dirname, "./front-end/outcome/success.html"));
+});
+
+app.get("/fail", (req, res) => {
+  res.sendFile(path.join(__dirname, "./front-end/outcome/fail.html"));
+});
+
 const port = process.env.PORT || 8080;
 
 const server = app.listen(port, () => {
