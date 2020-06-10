@@ -23,7 +23,7 @@ app.use(
 app.use(apiRoutes);
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./front-end/index.html"));
+  res.sendFile(path.join(__dirname, "./front-end/payment/index.html"));
 });
 
 app.get("/success", (req, res) => {
