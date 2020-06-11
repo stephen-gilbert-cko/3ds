@@ -1,7 +1,7 @@
 const schemeIcon = document.getElementById("scheme");
 const lastFour = document.getElementById("last-four");
 const errorMessage = document.getElementById("error");
-const outcome = document.getElementById("outcome-animation");
+const outcome = document.getElementById("confirm-animation");
 const cross =
   '<svg class="cross" viewBox="0 0 50 50"><path class="cross draw" fill="none" d="M16 16 34 34 M34 16 16 34"></path></svg>';
 
@@ -35,6 +35,7 @@ const showOutcome = () => {
       console.log("Payment details: ", data);
       // Confirmation details
       if (data.approved) {
+        outcome.style.backgroundColor = "var(--green)";
         outcome.classList.add("checkmark", "draw");
 
         schemeIcon.setAttribute(
@@ -45,9 +46,11 @@ const showOutcome = () => {
         schemeIcon.style.setProperty("display", "block");
 
         lastFour.innerHTML = "****" + data.source.last4;
+      } else {
+        outcome.style.backgroundColor = "var(--red)";
+        outcome.innerHTML = cross;
+        outcome.classList.add("cross", "draw");
       }
-      outcome.class = "cross";
-      outcome.innerHTML = cross;
     }
   );
 };
