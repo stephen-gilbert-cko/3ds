@@ -11,13 +11,13 @@ const app = express();
 app.use(express.static(path.join(__dirname, "./front-end")));
 app.use(
   cors({
-    origin: "*",
+    origin: "*"
   })
 );
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: true,
+    extended: true
   })
 );
 app.use(apiRoutes);
@@ -50,7 +50,7 @@ var io = socket(server);
 app.post("/webhook", (req, res) => {
   io.emit("webhook", {
     type: req.body.type,
-    paymentId: req.body.data.id,
+    paymentId: req.body.data.id
   });
   res.sendStatus(200);
 });
