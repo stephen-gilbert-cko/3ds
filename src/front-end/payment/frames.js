@@ -253,7 +253,10 @@ const payWith3ds = (token) => {
     {
       method: "POST",
       route: "/payWith3ds",
-      body: { token: token },
+      body: { 
+        token: token,
+        url: window.location.origin // Returns host (e.g. localhost/CodeSandbox)
+      },
     },
     (data) => {
       payLoader.classList.add("hide");

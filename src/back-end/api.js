@@ -13,8 +13,8 @@ route.post("/payWith3ds", async (req, res) => {
     "3ds": {
       enabled: true,
     },
-    success_url: "http://localhost:8080/success",
-    failure_url: "http://localhost:8080/fail",
+    success_url: req.body.url + "/success",
+    failure_url: req.body.url + "/fail",
   });
   // Only send back the redirection URL
   res.send({
