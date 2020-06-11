@@ -31,6 +31,8 @@ const crossHidden =
 const handleResponse = (data) => {
   payLoader.classList.add("hide");
   PAYMENT_ID = data.id;
+
+  console.log("Redirection URL: ", data.redirectionUrl);
   // Payment approved
   if (data.redirectionUrl) {
     window.location.href = data.redirectionUrl;
