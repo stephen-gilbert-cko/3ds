@@ -28,11 +28,9 @@ const crossVisible =
 const crossHidden =
   '<svg class="cross hide" viewBox="0 0 50 50"><path class="cross draw" fill="none" d="M16 16 34 34 M34 16 16 34"></path></svg>';
 
-const handleResponse = (data) => {
+const handleResponse = data => {
   payLoader.classList.add("hide");
   PAYMENT_ID = data.id;
-
-  console.log("Redirection URL: ", data.redirectionUrl);
   // Payment approved
   if (data.redirectionUrl) {
     window.location.href = data.redirectionUrl;
@@ -68,18 +66,18 @@ const cleanState = () => {
     "card-number": {
       isValid: false,
       isEmpty: true,
-      isFocused: false,
+      isFocused: false
     },
     "expiry-date": {
       isValid: false,
       isEmpty: true,
-      isFocused: false,
+      isFocused: false
     },
     cvv: {
       isValid: false,
       isEmpty: true,
-      isFocused: false,
-    },
+      isFocused: false
+    }
   };
   hideCheckmark();
   hideCross();
@@ -98,9 +96,9 @@ const http = ({ method, route, body }, callback) => {
     method,
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(body)
   };
 
   if (method.toLocaleLowerCase() === "get") {
@@ -109,15 +107,15 @@ const http = ({ method, route, body }, callback) => {
 
   // Timeout after 10 seconds
   timeout(10000, fetch(`${window.location.origin}${route}`, requestData))
-    .then((res) => res.json())
-    .then((data) => callback(data))
-    .catch((er) => errorMessage.innerHTML = er);
+    .then(res => res.json())
+    .then(data => callback(data))
+    .catch(er => (errorMessage.innerHTML = er));
 };
 
 // For connection timeout error handling
 const timeout = (ms, promise) => {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
       reject(new Error("Connection timeout"));
     }, ms);
     promise.then(resolve, reject);
@@ -126,7 +124,7 @@ const timeout = (ms, promise) => {
 
 // Socket part so we can handle webhooks:
 var socket = io();
-socket.on("webhook", (webhookBody) => {
+socket.on("webhook", webhookBody => {
   if (webhookBody.paymentId !== PAYMENT_ID) {
     return;
   }
@@ -149,7 +147,7 @@ socket.on("webhook", (webhookBody) => {
 
   toastBar.append(newToast);
   newToast.classList.add("show");
-  setTimeout(function () {
+  setTimeout(function() {
     newToast.classList.remove("show");
     newToast.outerHTML = "";
   }, 5000);
@@ -171,11 +169,11 @@ if (theme) {
 }
 
 // Dark mode switch
-document.getElementById("theme-switch").addEventListener("change", (event) => {
+document.getElementById("theme-switch").addEventListener("change", event => {
   themeSwitch(event);
 });
 
-const themeSwitch = (event) => {
+const themeSwitch = event => {
   if (event.target.checked) {
     // Dark mode
     document.body.className = "";
