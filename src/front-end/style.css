@@ -580,6 +580,27 @@ input[type="checkbox"]:checked + label:after {
   transform: translateX(48px) scale(1);
 }
 
+/* Outcome pages */
+
 .confirmation {
   color: var(--confirmation-text);
+  width: var(--payment-form-width);
+  position: absolute;
+  left: 50%;
+  top: 46.5%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.card-confirmation {
+  position: relative;
+  top: 10px;
+  left: 15px;
+}
+
+#scheme {
+  position: relative;
+  top: 17px;
+  left: 90px;
 }

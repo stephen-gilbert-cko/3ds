@@ -1,4 +1,4 @@
-const schemeIcon = document.getElementById("card-scheme");
+const schemeIcon = document.getElementById("scheme");
 const lastFour = document.getElementById("last-four");
 const errorMessage = document.getElementById("error");
 const outcome = document.getElementById("outcome-animation");
