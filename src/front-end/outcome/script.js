@@ -28,10 +28,10 @@ const showOutcome = () => {
       method: "POST",
       route: "/getPaymentBySession",
       body: {
-        sessionId: SESSION_ID,
-      },
+        sessionId: SESSION_ID
+      }
     },
-    (data) => {
+    data => {
       console.log("Payment details: ", data);
       // Confirmation details
       if (data.approved) {
@@ -39,7 +39,7 @@ const showOutcome = () => {
 
         schemeIcon.setAttribute(
           "src",
-          "images/card-icons/" + data.source.scheme + ".svg"
+          "images/card-icons/" + data.source.scheme.toLowerCase() + ".svg"
         );
         schemeIcon.setAttribute("alt", data.source.scheme);
         schemeIcon.style.setProperty("display", "block");
@@ -58,9 +58,9 @@ const http = ({ method, route, body }, callback) => {
     method,
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(body)
   };
 
   if (method.toLocaleLowerCase() === "get") {
@@ -69,15 +69,15 @@ const http = ({ method, route, body }, callback) => {
 
   // Timeout after 10 seconds
   timeout(10000, fetch(`${window.location.origin}${route}`, requestData))
-    .then((res) => res.json())
-    .then((data) => callback(data))
-    .catch((er) => (errorMessage.innerHTML = er));
+    .then(res => res.json())
+    .then(data => callback(data))
+    .catch(er => (errorMessage.innerHTML = er));
 };
 
 // For connection timeout error handling
 const timeout = (ms, promise) => {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
       reject(new Error("Connection timeout"));
     }, ms);
     promise.then(resolve, reject);
