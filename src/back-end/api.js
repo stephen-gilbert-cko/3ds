@@ -1,6 +1,6 @@
 const route = require("express").Router();
 const { Checkout } = require("checkout-sdk-node");
-const cko = new Checkout("sk_test_0b9b5db6-f223-49d0-b68f-f6643dd4f808");
+const cko = new Checkout("sk_test_bf908821-87a2-43bf-9e9f-77a1d4fffed2");
 
 route.post("/payWith3ds", async (req, res) => {
   const payment = await cko.payments.request({

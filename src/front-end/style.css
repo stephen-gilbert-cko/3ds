@@ -35,6 +35,7 @@
   --switch-sun-color: var(--yellow);
   --switch-border-color: var(--white);
   --confirmation-text: var(--darker-gray);
+  --back-button: var(--dark-gray);
 }
 
 .dark {
@@ -55,6 +56,7 @@
   --switch-sun-color: var(--yellow);
   --switch-border-color: var(--white);
   --confirmation-text: var(--white);
+  --back-button: var(--gray);
 }
 
 * {
@@ -599,6 +601,11 @@ input[type="checkbox"]:checked + label:after {
   left: 15px;
 }
 
+#message {
+  position: relative;
+  top: 15px;
+}
+
 #scheme {
   height: 150%;
   width: 150%;
@@ -729,4 +736,23 @@ input[type="checkbox"]:checked + label:after {
     height: 25px;
     opacity: 1;
   }
+}
+
+.back {
+  border-radius: 50px;
+  box-shadow: 0 2px 5px 0 var(--input-border-focus);
+  background-color: var(--background);
+  font-weight: 600;
+  font-size: 15px;
+  height: var(--input-height);
+  width: 150px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: 100px;
+  color: var(--back-button);
+}
+
+.back:hover {
+  color: var(--label-focus);
 }

@@ -15,12 +15,10 @@ const cardHint = document.querySelector(".card-hint");
 const dateHint = document.querySelector(".expiry-date-hint");
 const cvvHint = document.querySelector(".cvv-hint");
 const payLoader = document.querySelector(".pay-loader");
-const toastBar = document.getElementById("toast_bar");
 const switcher = document.getElementById("theme-switch");
 const outcome = document.getElementById("outcome");
 const error = document.querySelector(".error");
 const errorMessage = document.getElementById("error-hint");
-var PAYMENT_ID = "";
 var theme = "";
 
 const crossVisible =
@@ -120,37 +118,6 @@ const timeout = (ms, promise) => {
     promise.then(resolve, reject);
   });
 };
-
-// Socket part so we can handle webhooks:
-var socket = io();
-socket.on("webhook", webhookBody => {
-  if (webhookBody.paymentId !== PAYMENT_ID) {
-    return;
-  }
-  let tempWebhook = webhookBody.type.replace("_", " ");
-
-  let newToast = document.createElement("div");
-  newToast.classList.add("toast_body");
-
-  // WEBHOOK div
-  let newWHDiv = document.createElement("div");
-  newWHDiv.innerHTML = "WEBHOOK";
-  newWHDiv.classList.add("wh_div");
-  newToast.appendChild(newWHDiv);
-
-  // Payment type div
-  let newPTDiv = document.createElement("div");
-  newPTDiv.innerHTML = tempWebhook;
-  newPTDiv.classList.add("pt_div");
-  newToast.appendChild(newPTDiv);
-
-  toastBar.append(newToast);
-  newToast.classList.add("show");
-  setTimeout(function() {
-    newToast.classList.remove("show");
-    newToast.outerHTML = "";
-  }, 5000);
-});
 
 /* Themes */
 
