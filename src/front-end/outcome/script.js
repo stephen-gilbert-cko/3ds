@@ -4,6 +4,7 @@ const errorMessage = document.getElementById("error");
 const outcome = document.getElementById("confirm-animation");
 const toastBar = document.getElementById("toast_bar");
 const backButton = document.querySelector(".back");
+const approved = document.querySelector(".approved");
 const cross =
   '<svg class="cross" viewBox="0 0 50 50"><path class="cross draw" fill="none" d="M16 16 34 34 M34 16 16 34"></path></svg>';
 
@@ -42,7 +43,7 @@ const showOutcome = () => {
       // Confirmation details
       if (data.approved) {
         PAYMENT_ID = data.id;
-
+        approved.innerHTML = "Test payment approved!";
         outcome.style.backgroundColor = "var(--green)";
         outcome.classList.add("checkmark", "draw");
 
@@ -55,6 +56,7 @@ const showOutcome = () => {
 
         lastFour.innerHTML = "****" + data.source.last4;
       } else {
+        approved.innerHTML = "Test payment failed";
         outcome.style.backgroundColor = "var(--red)";
         outcome.innerHTML = cross;
         outcome.classList.add("cross", "draw");
